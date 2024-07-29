@@ -29,7 +29,7 @@ const Register = () => {
           </div>
           <div className="grid gap-2">
             <Label htmlFor="email">Email</Label>
-            <Input id="email" type="email" placeholder="user@iamneo.ai" />
+            <Input id="email" type="email" placeholder="fableminds.ai@gmail.com" />
           </div>
           <div className="grid gap-2">
             <Label htmlFor="password">Password</Label>

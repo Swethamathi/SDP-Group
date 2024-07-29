@@ -1,0 +1,416 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+  }
+/*   
+  body {
+    background: black;
+  }
+   */
+  .animateme {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1;
+  }
+  
+  .bg-bubbles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  }
+  .bg-bubbles li {
+    position: absolute;
+    list-style: none;
+    display: block;
+    width: 40px;
+    height: 40px;
+    background-color: #ccc;
+    bottom: 60px;
+    -webkit-animation: square 25s infinite;
+    animation: square 25s infinite;
+    -webkit-transition-timing-function: linear;
+    transition-timing-function: linear;
+    opacity: 0;
+  }
+  
+  .bg-bubbles li:nth-child(1) {
+    left: 3%;
+    border-radius: 50em;
+    background: transparent;
+    border: 4px solid #ccc;
+  }
+  .bg-bubbles li:nth-child(2) {
+    left: 6%;
+    width: 75px;
+    height: 75px;
+    -webkit-animation-delay: 2s;
+    animation-delay: 2s;
+    -webkit-animation-duration: 17s;
+    animation-duration: 17s;
+  }
+  .bg-bubbles li:nth-child(3) {
+    left: 15%;
+    width: 175px;
+    height: 175px;
+    -webkit-animation-delay: 4s;
+    animation-delay: 4s;
+  }
+  .bg-bubbles li:nth-child(4) {
+    left: 40%;
+    width: 90px;
+    height: 90px;
+    -webkit-animation-duration: 22s;
+    animation-duration: 22s;
+  }
+  .bg-bubbles li:nth-child(5) {
+    left: 70%;
+    background: transparent;
+    border: 4px solid #ccc;
+  }
+  .bg-bubbles li:nth-child(6) {
+    left: 90%;
+    width: 90px;
+    height: 90px;
+    -webkit-animation-delay: 3s;
+    animation-delay: 3s;
+    border-radius: 50em;
+    background: transparent;
+    border: 4px solid #ccc;
+  }
+  .bg-bubbles li:nth-child(7) {
+    left: 32%;
+    width: 60px;
+    height: 60px;
+    -webkit-animation-delay: 7s;
+    animation-delay: 7s;
+    background: transparent;
+    border: 4px solid #ccc;
+  }
+  .bg-bubbles li:nth-child(8) {
+    left: 55%;
+    width: 50px;
+    height: 50px;
+    -webkit-animation-delay: 15s;
+    animation-delay: 15s;
+    -webkit-animation-duration: 40s;
+    animation-duration: 40s;
+  }
+  .bg-bubbles li:nth-child(9) {
+    left: 30%;
+    width: 140px;
+    height: 140px;
+    -webkit-animation-delay: 2s;
+    animation-delay: 2s;
+    -webkit-animation-duration: 40s;
+    animation-duration: 40s;
+    border-radius: 50em;
+    background: transparent;
+    border: 4px solid #ccc;
+  }
+  .bg-bubbles li:nth-child(10) {
+    left: 90%;
+    width: 60px;
+    height: 60px;
+    -webkit-animation-delay: 11s;
+    animation-delay: 11s;
+  }
+  .bg-bubbles li:nth-child(11) {
+    left: 10%;
+    width: 40px;
+    height: 40px;
+    -webkit-animation-delay: 13s;
+    animation-delay: 13s;
+    border-radius: 50em;
+  }
+  .bg-bubbles li:nth-child(12) {
+    left: 55%;
+    width: 175px;
+    height: 175px;
+    -webkit-animation-delay: 7s;
+    animation-delay: 7s;
+    background: transparent;
+    border: 4px solid #ccc;
+  }
+  
+  .bg-bubbles li:nth-child(13) {
+    left: 65%;
+    width: 100px;
+    height: 100px;
+    -webkit-animation-delay: 8s;
+    animation-delay: 8s;
+    border-radius: 50em;
+  }
+  
+  @-webkit-keyframes square {
+    0% {
+      -webkit-transform: translateY(0);
+      transform: translateY(0);
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      -webkit-transform: translateY(-700px) rotate(600deg);
+      transform: translateY(-700px) rotate(600deg);
+      opacity: 1;
+    }
+  }
+  @keyframes square {
+    0% {
+      -webkit-transform: translateY(0);
+      transform: translateY(0);
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      -webkit-transform: translateY(-700px) rotate(600deg);
+      transform: translateY(-700px) rotate(600deg);
+      opacity: 0;
+    }
+  }
+ /* Global Variables */
+:root {
+    --w: #f0f0f0;
+    --s: #111111;
+    --a: royalblue;
+    --a2: lightblue;
+    --k: cornflowerblue;
+    --p2: 2rem;
+    --p1: 1rem;
+    --p0: 0.5rem;
+  }
+  
+  /* Basic Styles */
+  body {
+    /* background: linear-gradient(45deg, navy, lightblue) no-repeat top center/cover; */
+    margin: 0;
+    font-family: Poppins, Roboto, Arial, sans-serif;
+    color: var(--s);
+  }
+  
+  h1, h2 {
+    text-align: center;
+    /* font-weight: 400; */
+    font-weight: bold;
+    padding-left:  15px;
+  }
+  
+  header {
+    text-align: center;
+    padding: var(--p2) 0;
+  }
+  
+  header h1 {
+    font-size: 5vw;
+  }
+  
+  header img {
+    width: 150px;
+    height: 150px;
+    border-radius: 25px;
+    display: block;
+    margin: 0 auto;
+  }
+  
+  nav, footer {
+    text-align: center;
+  }
+  
+  nav {
+    position: sticky;
+    top: 0;
+    background: rgba(250, 250, 250, 0.9);
+    padding: var(--p0);
+    backdrop-filter: blur(5px);
+  }
+  
+  nav ul {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  nav li a {
+    color: var(--a);
+    font-weight: 900;
+    font-size: 1.5vw;
+  }
+  
+  /* main {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    gap: 1rem;
+    padding: var(--p1) var(--p2);
+
+  } */
+  main {
+    display: grid;
+    grid-template-columns: 3fr 1fr; /* Adjust the fractions to control the column width */
+    gap: 1rem; /* Spacing between grid items */
+    padding: 1rem 2rem; /* Adjust padding as needed */
+    max-width: 15000px; /* Set a maximum width for the main content */
+    margin: 0 auto; /* Center the main content */
+}
+  
+  /* section {
+    background: rgba(250, 250, 250, 0.5);
+    padding: var(--p2) var(--p1) var(--p1);
+    margin: 1rem 0;
+    border-radius: 1rem;
+  } */
+  /* section {
+    background: rgba(250, 250, 250, 0.5);
+    padding: var(--p2) var(--p1) var(--p1);
+    margin: 1rem 0;
+    border-radius: 1rem;
+    width: 80%; /* Example width */
+    /* height: 400px; Example height
+ */ 
+ section {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Example grid layout */
+    background: rgba(250, 250, 250, 0.5);
+    padding: var(--p2) var(--p1) var(--p1);
+    margin: 1rem 0;
+    /* width: 100%; */
+    border-radius: 1rem;
+}
+
+
+
+  
+  #me {
+    margin: 0 2rem;
+    /* width: 100%; */
+  }
+  
+  #work {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    width: 210vh;
+    padding: var(--p1) var(--p2);
+  }
+  
+  .card {
+    width: calc(50% - 1rem);
+    background: var(--w);
+    border-radius: calc(25px - 1rem);
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1), 2px 2px 4px rgba(0, 0, 0, 0.3);
+  }
+  
+  .card-header img {
+    width: 100%;
+    border-radius: calc(25px - 1rem) calc(25px - 1rem) 0 0;
+  }
+  
+  .card-body {
+    padding: var(--p0) var(--p1);
+  }
+  
+  h2 {
+    width: 100%;
+    font-size: 3vw;
+    margin: 1rem 0;
+  }
+  
+  h3 {
+    font-size: 3.5vw;
+    margin: 0.5rem 0 1rem;
+  }
+  
+  h4 {
+    margin: auto;
+  }
+  
+  h4 a:not(:hover), h3 a:not(:hover) {
+    color: var(--k);
+    text-decoration: none;
+  }
+  
+  a:hover {
+    color: var(--k);
+  }
+  
+  .card-body a {
+    text-decoration: none;
+    color: var(--a);
+  }
+  
+  h4 a::after, h3 a::after, .card-body a::after {
+    content: "\00A0\00BB";
+  }
+  
+  aside small {
+    background: var(--a);
+    color: var(--w);
+    padding: 5px;
+    border-radius: 25px;
+    line-height: 3;
+    margin-right: 5px;
+  }
+  
+  small a {
+    color: var(--w);
+    text-decoration: none;
+  }
+  
+  small a:hover {
+    color: pink;
+    mix-blend-mode: difference;
+  }
+  
+  .ui {
+    background: var(--s);
+  }
+  
+  .misc {
+    background: var(--k);
+  }
+  
+  .style {
+    background: var(--w);
+  }
+  
+  .style a {
+    color: var(--k);
+  }
+  
+  footer {
+    background: var(--k);
+    padding: var(--p2) var(--p0);
+    font-size: 2.5vw;
+  }
+  
+  /* Responsive Styles */
+  @media only screen and (max-width: 1000px) {
+    main {
+      grid-template-columns: 1fr;
+    }
+  
+    aside {
+      grid-row: 1 / 2;
+    }
+  
+    h2 {
+      font-size: 2cqmin;
+    }
+  
+    nav li a, h3 {
+      font-size: 1rem;
+    }
+  }
+  
+  
+  

@@ -15,6 +15,10 @@ const Footer = () => {
         </a>
       </div>
     </div>
+    // <div>
+    //   <Footer/>
+    // </div>
+  
   )
 }
 

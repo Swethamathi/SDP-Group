@@ -1,24 +1,24 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-import { LayoutDashboard, Cog, Mail, Users, Power } from 'lucide-react'
+import { LayoutDashboard, Cog, Mail, Users, Power, BookIcon } from 'lucide-react'
 import { Button } from '../ui/button'
-const Leftbar = () => {
+const UserLeftbar = () => {
 
     const AdminLinks = [
         {
-            title: 'STATUS',
-            link: '/admin/dashboard',
-            icon: LayoutDashboard
+            title: 'ENGLISH STORIES',
+            link: '/user/dashboard',
+            icon: BookIcon
         }, {
-            title: 'USERS',
-            link: '/admin/users',
-            icon: Users
+            title: 'TAMIL STORIES',
+            link: '/user/users',
+            icon: BookIcon
         }
     ]
     return (
-        <div className='h-screen w-1/6 flex justify-center items-center flex-col shadow-sm shadow-primary pt-10'>
+        <div className='h-[5000 px] w-1/6 flex justify-center items-center flex-col shadow-sm shadow-primary pt-10'>
             <div className='h-[5%] text-primary font-bold text-2xl flex justify-center items-center'>
-            FableMindz
+                FableMindz
             </div>
             <div className='h-[90%] w-full flex flex-col justify-start items-center gap-2'>
                 {
@@ -44,4 +44,4 @@ const Leftbar = () => {
     )
 }
 
-export default Leftbar
+export default UserLeftbar
