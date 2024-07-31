@@ -11,6 +11,9 @@ import AdminDashboard from './pages/Admin/AdminDashboard'
 import NotFound from './pages/Shared/NotFound'
 import HomeLayout from './layout/HomeLayout'
 import AdminUsers from './pages/Admin/AdminUsers'
+import Stories from './pages/Shared/Stories'
+import UserUsers from './pages/User/UserUsers'
+import UserFeedback from './pages/User/UserFeedback'
 
 
 
@@ -22,12 +25,19 @@ const App = () => {
                 <Routes>
                     <Route element={<HomeLayout />}>
                         <Route path='/' element={<Home />} />
-                        <Route path='/login' element={<Login />} />
                         <Route path='/register' element={<Register />} />
+                        <Route path='/login' element={<Login />} />
+                      
+                        <Route path='/stories' element={<Stories />} />
+
                     </Route>
 
                     <Route element={<UserLayout />}>
-                        <Route path='/dashboard' element={<UserDashboard />} />
+                    
+                        <Route path='/user/dashboard' element={<UserDashboard />} />
+                        <Route path='/user/users' element={<UserUsers />} />
+                        <Route path='/user/feedback' element={<UserFeedback />} />
+                  
                     </Route>
 
                     <Route element={<AdminLayout />}>

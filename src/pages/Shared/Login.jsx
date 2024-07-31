@@ -1,39 +1,98 @@
-import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
 
 const Login = () => {
-    return (
-        <div className='h-full w-full flex justify-center items-center'>
-            <Card className="w-1/4">
-                <CardHeader className="space-y-1">
-                    <CardTitle className="text-2xl">Login</CardTitle>
-                    <CardDescription>
-                        Enter your email below to login
-                    </CardDescription>
-                </CardHeader>
-                <CardContent className="grid gap-4">
-                    <div className="relative">
-                        <div className="absolute inset-0 flex items-center">
-                            <span className="w-full border-t" />
-                        </div>
-                    </div>
-                    <div className="grid gap-2">
-                        <Label htmlFor="email">Email</Label>
-                        <Input id="email" type="email" placeholder="user@iamneo.ai" />
-                    </div>
-                    <div className="grid gap-2">
-                        <Label htmlFor="password">Password</Label>
-                        <Input id="password" type="password" placeholder="******" />
-                    </div>
-                </CardContent>
-                <CardFooter>
-                    <Button className="w-full">Login</Button>
-                </CardFooter>
-            </Card>
-        </div>  
-    )
-}
+    const navigate = useNavigate();
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
 
-export default Login
+    const handleLogin = (e) => {
+        e.preventDefault();
+        setError('');
+
+        if (email && password) {
+            navigate('/user/dashboard');
+        } else {
+            setError('Please fill in all fields');
+        }
+    };
+
+    return (
+        <div>
+            <div className="animateme">
+                <ul className="bg-bubbles">
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ul>
+            </div>
+            <div className="wrapper">
+                <div className="login-box">
+                    <form onSubmit={handleLogin}>
+                        <h1 className="text-xl">Login</h1>
+
+                        <div className="input-box">
+                            <span className="icon">
+                                <ion-icon name="mail"></ion-icon>
+                            </span>
+                            <input
+                                type="email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                required
+                            />
+                            <label>Email</label>
+                        </div>
+
+                        <div className="input-box">
+                            <span className="icon">
+                                <ion-icon name="lock-closed"></ion-icon>
+                            </span>
+                            <input
+                                type="password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                required
+                            />
+                            <label>Password</label>
+                        </div>
+
+                        <div className="remember-forgot">
+                            <label>
+                                <input type="checkbox" /> Remember me
+                            </label>
+                            <a href="#">Forgot Password?</a>
+                        </div>
+
+                        {error && <p style={{ color: 'red' }}>{error}</p>}
+
+                        <Button type="submit">Login</Button>
+
+                        <div className="register-link">
+                            <p>
+                                Don't have an account? <a href="#">Register</a>
+                            </p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+export default Login;
