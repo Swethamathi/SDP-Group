@@ -59,6 +59,10 @@ import AdminDashboard from './pages/Admin/AdminDashboard'
 import NotFound from './pages/Shared/NotFound'
 import HomeLayout from './layout/HomeLayout'
 import AdminUsers from './pages/Admin/AdminUsers'
+import AboutUs from './pages/Shared/AboutUs'
+import Products from './components/Shared/Products'
+import Reports from './pages/Admin/AdminReports'
+
 
 
 
@@ -72,6 +76,9 @@ const App = () => {
                         <Route path='/' element={<Home />} />
                         <Route path='/login' element={<Login />} />
                         <Route path='/register' element={<Register />} />
+                        <Route path='/aboutus' element={<AboutUs/>} />
+                        <Route path='/products' element={<Products/>} />
+                        
                     </Route>
 
                     <Route element={<UserLayout />}>
@@ -81,6 +88,7 @@ const App = () => {
                     <Route element={<AdminLayout />}>
                         <Route path='/admin/dashboard' element={<AdminDashboard />} />
                         <Route path='/admin/users' element={<AdminUsers />} />
+                        <Route path='/admin/reports' element={<Reports />} />
                     </Route>
 
                     <Route path='*' element={<NotFound />} />

@@ -57,7 +57,7 @@ export function ModeToggle() {
       variant="outline"
       size="icon"
       onClick={toggleTheme}
-      className="border-none p-2"
+      className="bg-blue bg-opacity-80 backdrop-blur-lg border border-gray-300 rounded-full p-2 shadow-md hover:bg-opacity-70 transition duration-300"
     >
       {currentTheme === "light" ? (
         <Sun className="h-[1.2rem] w-[1.2rem] transition-all" />

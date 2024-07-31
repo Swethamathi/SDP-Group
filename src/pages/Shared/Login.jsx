@@ -1,19 +1,34 @@
-import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
-import { NeonGradientCard } from '@/components/magicui/neon-gradient-card'
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
+    const navigate = useNavigate();
+
+    const handleGoogleSignIn = () => {
+        // Add your Google sign-in logic here
+    };
+
+    const handleSignUpRedirect = () => {
+        navigate('/register'); // Change '/signup' to your actual signup route
+    };
+
     return (
-        <div className='h-half w-half flex justify-center items-center'>
-            <NeonGradientCard className="max-w-sm items-center justify-center text-center">
-            <span className="pointer-events-none z-10 h-full whitespace-pre-wrap bg-gradient-to-br from-[#ff29e6] from-35% to-[#00fff7] bg-clip-text text-center text-6xl font-bold leading-none tracking-tighter text-transparent dark:drop-shadow-[0_5px_5px_rgba(0,0,0,0.8)]">
-            <Card className="w-1/4">
-                <CardHeader className="space-y-1">
-                    <CardTitle className="text-2xl">Login</CardTitle>
+        <div className='h-full w-full flex flex-col justify-center items-center opacity-85 gap-4'>
+            <Card className="w-full sm:w-1/2 md:w-1/4" style={{
+                boxShadow: '0 10px 30px rgba(0, 0, 0, 0.4)',
+                background: 'rgba(255, 255, 255, 0.2)', // Semi-transparent white
+                borderRadius: '12px', // Rounded corners
+                border: '1px solid rgba(255, 255, 255, 0.3)', // Optional subtle border
+                paddingTop: '2rem', // Adjust padding to reduce gap
+                paddingBottom: '1.5rem', // Adjust bottom padding as needed
+            }}>
+                <CardHeader className="space-y-1 justify-center items-center ">
+                    <CardTitle className="text-2xl font-extrabold">- L O G I N -</CardTitle>
                     <CardDescription>
-                        Enter your email below to login
+                        Enter your email and password to login
                     </CardDescription>
                 </CardHeader>
                 <CardContent className="grid gap-4">
@@ -24,21 +39,32 @@ const Login = () => {
                     </div>
                     <div className="grid gap-2">
                         <Label htmlFor="email">Email</Label>
-                        <Input id="email" type="email" placeholder="user@iamneo.ai" />
+                        <Input id="email" type="email" placeholder="user@everisk.ai" aria-label="Email" required />
                     </div>
                     <div className="grid gap-2">
                         <Label htmlFor="password">Password</Label>
-                        <Input id="password" type="password" placeholder="******" />
+                        <Input id="password" type="password" placeholder="******" aria-label="Password" required />
                     </div>
                 </CardContent>
-                <CardFooter>
-                    <Button className="w-full">Login</Button>
+                <CardFooter className="flex flex-col gap-2">
+                    <Button
+                        className="w-full bg-gradient-to-r from-green-400 to-violet-300 focus:outline-none rounded transition duration-100"
+                    >
+                        Login
+                    </Button>
                 </CardFooter>
             </Card>
-            </span>
-    </NeonGradientCard>
+            <div className="flex flex-col items-center mt-4 w-full">
+                <Label className="mb-2">Not with us yet?</Label>
+                <Button
+                    className="w-40 bg-gradient-to-r from-blue-400 to-purple-300 text-white focus:outline-none rounded transition duration-150 hover:from-blue-500 hover:to-purple-400"
+                    onClick={handleSignUpRedirect}
+                >
+                    Sign Up
+                </Button>
+            </div>
         </div>
-    )
-}
+    );
+};
 
-export default Login
+export default Login;
