@@ -1,40 +1,99 @@
-
-import React from 'react'
-import { Link, NavLink } from 'react-router-dom'
-import { ModeToggle } from '../mode-toggle'
+import React from 'react';
+import { ModeToggle } from '../mode-toggle';
+import { useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
+  const navigate = useNavigate();
+
+  const handleHome = () => {
+    navigate('/');
+  };
+
   const NavLinks = [
     {
-      title: "Home",
-      path: "/"
+      title: 'Home',
+      path: '/',
     },
     {
-      title: "Login",
-      path: "/login"
+      title: 'Login',
+      path: '/login',
     },
     {
-      title: "Register",
-      path: "/register"
-    }
-  ]
+      title: 'Register',
+      path: '/register',
+    },
+  ];
+
   return (
-    <div className="w-full h-[8vh] flex flex-row justify-center items-center shadow-sm shadow-primary/50">
-      <div className="w-1/4 h-full text-primary font-bold flex justify-start items-center text-lg"> Mini''s@tale</div>
-      <div className='w-2/4 h-full font-bold flex flex-row justify-end items-center gap-8'>
-        {
-          NavLinks.map((links, index) => (
-            <li key={index} className='list-none'>
-              <NavLink to={links.path}>
-                {links.title}
-              </NavLink>
-            </li>
-          ))
-        }
-        <ModeToggle />
+    <div className="flex items-center justify-between p-3  bg-opacity-50">
+      <div
+        id="logo"
+        className="flex items-center cursor-pointer"
+        onClick={handleHome}
+      >
+        <img
+          src="https://ik.imagekit.io/SrinivasanRavi/Home/LittleInn/FavIcon.png?updatedAt=1722142981113"
+          alt="Logo"
+          className="w-12 h-auto"
+        />
+      </div>
+      <div className="flex items-center">
+        <ul className="flex space-x-4">
+          <li className="font-baloo text-lg">
+            <a
+              href="/"
+              className="hover:border-[2px] rounded-lg px-3 py-2 font-bold"
+            >
+              Home
+            </a>
+          </li>
+          <li className="font-baloo text-lg">
+            <a
+              href="/#services-container"
+              className="hover:border-[2px] rounded-lg px-3 py-2 font-bold"
+            >
+              Service
+            </a>
+          </li>
+          <li className="font-baloo text-lg">
+            <a
+              href="/#client-section"
+              className="hover:border-[2px] rounded-lg px-3 py-2 font-bold"
+            >
+              Tales
+            </a>
+          </li>
+          <li className="font-baloo text-lg">
+            <a
+              href="/#contact"
+              className="hover:border-[2px] rounded-lg px-3 py-2 font-bold"
+            >
+              Feedback
+            </a>
+          </li>
+          <li className="font-baloo text-lg">
+            <a
+              href="/login"
+              className="hover:border-[2px] rounded-lg px-3 py-2 font-bold"
+            >
+              Login
+            </a>
+          </li>
+          <li className="font-baloo text-lg">
+            <a
+              href="/register"
+              className="hover:border-[2px] rounded-lg px-3 py-2 font-bold"
+            >
+              Register
+            </a>
+          </li>
+          <li className="items-center outline-none forced-color-adjust-none">
+            <ModeToggle />
+          </li>
+        </ul>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;

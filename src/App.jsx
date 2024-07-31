@@ -1,4 +1,3 @@
-
 import React from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Home from './pages/Shared/Home'
@@ -10,8 +9,12 @@ import AdminLayout from './layout/AdminLayout'
 import AdminDashboard from './pages/Admin/AdminDashboard'
 import NotFound from './pages/Shared/NotFound'
 import HomeLayout from './layout/HomeLayout'
-import AdminUsers from './pages/Admin/AdminUsers'
-
+import AdminUser from './pages/Admin/AdminUser'
+import AdminStories from './pages/Admin/AdminStories'
+import UserStories from './pages/User/UserStories'
+import AdminPodcasts from './pages/Admin/AdminPodcasts'
+import UserPodcasts from './pages/User/UserPodcasts'
+import UserSubscription from './pages/User/UserSubscription'
 
 
 
@@ -26,19 +29,23 @@ const App = () => {
                         <Route path='/register' element={<Register />} />
                     </Route>
 
-                    <Route element={<UserLayout />}>
-                        <Route path='/dashboard' element={<UserDashboard />} />
-                    </Route>
-
                     <Route element={<AdminLayout />}>
                         <Route path='/admin/dashboard' element={<AdminDashboard />} />
-                        <Route path='/admin/users' element={<AdminUsers />} />
+                        <Route path='/admin/users' element={<AdminUser />} />
+                        <Route path='/admin/stories' element={<AdminStories />} />
+                        <Route path='/admin/podcasts' element={<AdminPodcasts />} />
+                    </Route>
+
+                    <Route element={<UserLayout />}>
+                        <Route path='/user/dashboard' element={<UserDashboard />} />
+                        <Route path='/user/podcasts' element={<UserPodcasts />} />
+                        <Route path='/user/stories' element={<UserStories />} />
+                        <Route path='/user/subscription' element={<UserSubscription />} />
                     </Route>
 
                     <Route path='*' element={<NotFound />} />
                 </Routes>
             </BrowserRouter>
-
 
         </>
     )
