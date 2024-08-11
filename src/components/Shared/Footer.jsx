@@ -1,25 +1,39 @@
-import { Facebook, Twitter } from 'lucide-react'
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import { Facebook, Instagram, Twitter, Youtube } from 'lucide-react';
 
-const Footer = () => {
-  return (
-    <div className=" w-full h-[8vh] flex flex-row justify-center items-center border-t-2 border-primary/50">
-      <div className="w-1/4 h-full text-primary font-bold flex justify-start items-center text-lg"> mini's tale$2024</div>
-      <div className='w-2/4 h-full font-bold flex flex-row justify-end items-center gap-8 '>
-        <a href='#' target='_blank' className='h-8 w-8 rounded-md text-primary hover:bg-primary/50 hover:text-background flex justify-center items-center'>
-          <Facebook className='h-6 w-6' />
+const Footer = () => (
+  <footer className="bg-black text-white py-2">
+    <div className="container mx-auto flex flex-col items-center space-y-4">
+        <br></br>
+      <div className="flex space-x-6">
+        <a href="www.facebook.com" className="text-white hover:text-gray-400 bg-white p-2 rounded-full">
+          <Facebook size={24} className="text-black" />
         </a>
-        <a href='#' target='_blank' className='h-8 w-8 rounded-md text-primary hover:bg-primary/50 hover:text-background flex justify-center items-center'>
-          <Twitter className='h-6 w-6' />
+        <a href="https://www.instagram.com/" className="text-white hover:text-gray-400 bg-white p-2 rounded-full">
+          <Instagram size={24} className="text-black" />
+        </a>
+        <a href="https://x.com/" className="text-white hover:text-gray-400 bg-white p-2 rounded-full">
+          <Twitter size={24} className="text-black" />
+        </a>
+        <a href="https://www.youtube.com/" className="text-white hover:text-gray-400 bg-white p-2 rounded-full">
+          <Youtube size={24} className="text-black" />
         </a>
       </div>
-    </div>
-    // <div>
-    //   <Footer/>
-    // </div>
-  
-  )
-}
 
-export default Footer
+      {/* Navigation Links */}
+      <div className="flex space-x-8 text-sm">
+        <a href="#" className="hover:text-gray-400">Home</a>
+        <a href="#" className="hover:text-gray-400">News</a>
+        <a href="#" className="hover:text-gray-400">About</a>
+        <a href="#" className="hover:text-gray-400">Contact Us</a>
+        <a href="#" className="hover:text-gray-400">Our Team</a>
+      </div>
+
+      <div className="text-sm text-center">
+        <p>Copyright &copy; 2024 | Designed by <span className="font-semibold">LittleInn Corporations </span></p>
+      </div>
+    </div>
+  </footer>
+);
+
+export default Footer;

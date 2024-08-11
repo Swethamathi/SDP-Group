@@ -1,62 +1,75 @@
 import React from 'react'
+import NumberTicker from "@/components/magicui/number-ticker";
 import {
     Card,
     CardContent,
-    CardDescription,
-    CardFooter,
     CardHeader,
     CardTitle,
 } from "@/components/ui/card"
-import { DollarSign, ShoppingBag, User, Users } from 'lucide-react'
+import { Podcast, BookOpenText , Users } from 'lucide-react'
+import { useNavigate } from 'react-router-dom'
 const AdminDashboard = () => {
+    const move=useNavigate();
+    const users=()=>{
+        move('/admin/users')
+
+    }
     return (
         <div className="flex flex-row p-4 gap-4">
-            <Card className='w-1/4 border border-primary'>
+            <Card className='w-1/4 border border-primary' onClick={users}>
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                     <CardTitle className="text-sm font-medium">
-           Readers
+                        Total Users
                     </CardTitle>
                     <Users className="h-6 w-6 text-primary" />
                 </CardHeader>
                 <CardContent>
-                    <div className="text-2xl font-bold">100</div>
+                    <p className="whitespace-pre-wrap text-6xl font-medium tracking-tighter text-black dark:text-white">
+      <NumberTicker value={969} />
+    </p>
                 </CardContent>
             </Card>
-            <Card className='w-1/4 border border-primary'>
+            <Card className='w-1/4 border border-primary' onClick={users}>
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                     <CardTitle className="text-sm font-medium">
-                       Users
+                        Active Users
                     </CardTitle>
                     <Users className="h-6 w-6 text-primary" />
                 </CardHeader>
                 <CardContent>
-                    <div className="text-2xl font-bold">99</div>
+                <p className="whitespace-pre-wrap text-6xl font-medium tracking-tighter text-black dark:text-white">
+                <NumberTicker value={669} />
+                </p>
                 </CardContent>
             </Card>
             <Card className='w-1/4 border border-primary'>
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                     <CardTitle className="text-sm font-medium">
-                       Books
+                        Stories
                     </CardTitle>
-                    <ShoppingBag className="h-6 w-6 text-primary" />
+                    <BookOpenText  className="h-6 w-6 text-primary" />
                 </CardHeader>
                 <CardContent>
-                    <div className="text-2xl font-bold">1000</div>
+                <p className="whitespace-pre-wrap text-6xl font-medium tracking-tighter text-black dark:text-white">
+                <NumberTicker value={1897} />
+                </p>
                 </CardContent>
             </Card>
             <Card className='w-1/4 border border-primary'>
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                     <CardTitle className="text-sm font-medium">
-                        Counts
+                        Podcasts
                     </CardTitle>
-                    <DollarSign className="h-6 w-6 text-primary" />
+                      <Podcast  className="h-6 w-6 text-primary" />
                 </CardHeader>
                 <CardContent>
-                    <div className="text-2xl font-bold">1010</div>
+                <p className="whitespace-pre-wrap text-6xl font-medium tracking-tighter text-black dark:text-white">
+                <NumberTicker value={169} />
+                </p>
                 </CardContent>
             </Card>
         </div>
     )
 }
 
-export default AdminDashboard
+export default AdminDashboard;

@@ -1,4 +1,4 @@
-
+"use client";;
 import { useEffect, useId, useRef, useState } from "react";
 import { motion } from "framer-motion";
 
@@ -83,7 +83,7 @@ export function GridPattern({
       ref={containerRef}
       aria-hidden="true"
       className={cn(
-        "pointer-events-none absolute inset-0 h-full w-full fill-gray-400/30 stroke-gray-400/30",
+        "pointer-events-none absolute inset-0 h-full w-full fill-green-400/30 stroke-green-400/30",
         className
       )}
       {...props}>
@@ -119,7 +119,6 @@ export function GridPattern({
             height={height - 1}
             x={x * width + 1}
             y={y * height + 1}
-            fill="currentColor"
             strokeWidth="0" />
         ))}
       </svg>

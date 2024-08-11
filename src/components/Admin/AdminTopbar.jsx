@@ -1,6 +1,6 @@
 import React from 'react';
 import { ModeToggle } from '../mode-toggle';
-import { User } from 'lucide-react';
+import { UserCheck } from 'lucide-react';
 import { LogOut } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
@@ -11,14 +11,16 @@ const UserTopbar = () => {
     }
     return (
         <div className='h-[6vh] w-full flex justify-center items-center'>
-            <div className='w-[95%] h-full flex items-center justify-end gap-8 px-0'>
+            <div className='w-[95%] h-full flex items-center justify-end gap-8 px-1'>
                 <ModeToggle />
-                    <User />
-                    <button  onClick={handleHome} >
+    <UserCheck />
+    <button  onClick={handleHome} >
     <LogOut/>
 
     </button>
+    
             </div>
+            <hr></hr>
         </div>
     );
 }
