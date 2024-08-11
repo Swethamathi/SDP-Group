@@ -36,11 +36,11 @@ const handleHome=()=>{
         <div className='h-screen w-1/6 flex justify-center items-center flex-col shadow-sm shadow-primary pt-2'>
              <div id="logo" className="flex items-center cursor-pointer" onClick={handleHome}>
              <img
-          src="https://ik.imagekit.io/SrinivasanRavi/Home/LittleInn/2.png?updatedAt=1722589914943"
+          src="https://ik.imagekit.io/y0qqjzghp/Story.jpeg?updatedAt=1722669462566"
           alt="Logo"
           className="w-8 h-auto"
         />
-        <h2 className="text-xl text-center font-bold">LittleInn</h2>
+        <h2 className="text-xl text-center font-bold">FableMindz</h2>
       </div>
       <hr></hr>
             <div className='h-[90%] w-full flex flex-col justify-start items-center gap-0'>

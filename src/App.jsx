@@ -15,12 +15,12 @@ import UserStories from './pages/User/UserStories'
 import AdminPodcasts from './pages/Admin/AdminPodcasts'
 import UserPodcasts from './pages/User/UserPodcasts'
 import UserSubscription from './pages/User/UserSubscription'
-import Stories from './pages/Shared/Stories'
 
 
 
 const App = () => {
     return (
+        
         <>
             <BrowserRouter>
                 <Routes>
@@ -28,7 +28,6 @@ const App = () => {
                         <Route path='/' element={<Home />} />
                         <Route path='/login' element={<Login />} />
                         <Route path='/register' element={<Register />} />
-                        <Route path='/stories' element={<Stories/>}/>
                     </Route>
 
                     <Route element={<AdminLayout />}>
@@ -39,7 +38,7 @@ const App = () => {
                     </Route>
 
                     <Route element={<UserLayout />}>
-                        <Route path='/user/dashboard' element={<UserDashboard />} />
+                        <Route path='/user/dashboard' element={<UserDashboard/>} />
                         <Route path='/user/podcasts' element={<UserPodcasts />} />
                         <Route path='/user/stories' element={<UserStories />} />
                         <Route path='/user/subscription' element={<UserSubscription />} />
@@ -53,4 +52,4 @@ const App = () => {
     )
 }
 
-export default App 
+export default App

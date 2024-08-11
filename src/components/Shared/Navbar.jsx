@@ -22,10 +22,6 @@ const Navbar = () => {
       title: 'Register',
       path: '/register',
     },
-    {
-      title: 'Stories',
-      path: '/stories',
-    },
   ];
 
   return (
@@ -40,7 +36,7 @@ const Navbar = () => {
           alt="Logo"
           className="w-12 h-auto"
         />
-        <h2 className="text-xl text-center font-bold">FABLEMINDZZ</h2>
+        <h2 className="text-xl text-center font-bold">FableMindz</h2>
       </div>
       <div className="flex items-center">
         <ul className="flex space-x-4">
@@ -52,7 +48,7 @@ const Navbar = () => {
               Home
             </a>
           </li>
-          <li className="font-baloo text-lg">
+          {/* <li className="font-baloo text-lg">
             <a
               href="/#services-container"
               className="hover:border-[2px] rounded-lg px-3 py-2 font-bold"
@@ -75,29 +71,22 @@ const Navbar = () => {
             >
               Feedback
             </a>
+          </li> */}
+           <li className="font-baloo text-lg">
+            <a
+              href="/register"
+              className="hover:border-[2px] rounded-lg px-3 py-2 font-bold"
+            >
+            SignUp
+            </a>
           </li>
+         
           <li className="font-baloo text-lg">
             <a
               href="/login"
               className="hover:border-[2px] rounded-lg px-3 py-2 font-bold"
             >
-              Login
-            </a>
-          </li>
-          <li className="font-baloo text-lg">
-            <a
-              href="/register"
-              className="hover:border-[2px] rounded-lg px-3 py-2 font-bold"
-            >
-              Register
-            </a>
-          </li>
-          <li className="font-baloo text-lg">
-            <a
-              href="/stories"
-              className="hover:border-[2px] rounded-lg px-3 py-2 font-bold"
-            >
-              Stories
+            Login
             </a>
           </li>
           <li className="items-center outline-none forced-color-adjust-none">
