@@ -4,7 +4,7 @@ import { UserCheck } from 'lucide-react';
 import { LogOut } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
-const UserTopbar = () => {
+const AdminTopbar = () => {
     const Move=useNavigate();
     const handleHome=()=>{
         Move('/');
@@ -20,8 +20,9 @@ const UserTopbar = () => {
     </button>
     
             </div>
+            <hr></hr>
         </div>
     );
 }
 
-export default UserTopbar;
+export default AdminTopbar;

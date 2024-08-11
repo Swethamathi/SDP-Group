@@ -15,6 +15,10 @@ const AdminDashboard = () => {
 
     }
     return (
+        <>
+        <br></br>
+            <hr/>
+        <br></br>
         <div className="flex flex-row p-4 gap-4">
             <Card className='w-1/4 border border-primary' onClick={users}>
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -69,6 +73,7 @@ const AdminDashboard = () => {
                 </CardContent>
             </Card>
         </div>
+        </>
     )
 }
 

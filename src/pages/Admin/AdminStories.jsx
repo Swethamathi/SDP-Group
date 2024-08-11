@@ -1,84 +1,135 @@
-import React from "react";
-import Marquee from "@/components/magicui/marquee";
+import React, { useState } from "react";
 
-const reviews = [
+const InterviewCard = ({ name, title, image, additionalInfo }) => (
+  <div className="relative rounded-lg shadow-lg overflow-hidden group">
+    <img src={image} alt={name} className="w-full h-48 object-cover" />
+    <div className="p-4">
+      <h3 className="text-lg font-semibold">{name}</h3>
+      <p className="text-gray-600">{title}</p>
+    </div>
+    {/* Overlay that appears on hover */}
+    <div className="absolute inset-0 bg-black bg-opacity-60 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity duration-300">
+      <p className="text-white text-center px-4">{additionalInfo}</p>
+    </div>
+  </div>
+);
+
+const interviews = [
   {
-    name: "Beauty & Beast",
-    username: "@Beast",
-    body: "Originating in France, this is the story of Belle, a beautiful peasant girl ",
-    img: "https://ik.imagekit.io/SrinivasanRavi/Home/LittleInn/Home-Tales/Beauty%20and%20the%20Beast.jpg",
+    name: 'Little Red Riding Hood',
+    title: 'Little Red Riding Hood is a European fairy tale about a young girl and a sly wolf.',
+    image: 'https://ik.imagekit.io/SrinivasanRavi/Home/LittleInn/Home-Tales/Little%20Red%20Riding%20Hood.webp',
+    additionalInfo: 'A classic tale about courage and cleverness in the face of danger.',
   },
   {
-    name: "Little Red Riding Hood",
-    username: "@Wolf",
-    body: "Little Red Riding Hood is a European fairy tale about a young girl and a sly wolf.",
-    img: "https://ik.imagekit.io/SrinivasanRavi/Home/LittleInn/Home-Tales/Little%20Red%20Riding%20Hood.webp",
+    name: 'Beauty and the Beast',
+    title: 'Originating in France, this is the story of Belle, a beautiful peasant girl.',
+    image: 'https://ik.imagekit.io/SrinivasanRavi/Home/LittleInn/Home-Tales/Beauty%20and%20the%20Beast.jpg',
+    additionalInfo: 'A beautiful story about love and understanding beyond appearances.',
   },
   {
-    name: "The Frog Prince",
-    username: "@Prince",
-    body: "The Frog Prince; or, Iron Henry is a German fairy tale ",
-    img: "https://ik.imagekit.io/SrinivasanRavi/Home/LittleInn/Home-Tales/The%20Frog%20Prince.jpg",
+    name: 'The Frog Prince',
+    title: 'The Frog Prince; or, Iron Henry" is a German fairy tale.',
+    image: 'https://ik.imagekit.io/SrinivasanRavi/Home/LittleInn/Home-Tales/The%20Frog%20Prince.jpg?updatedAt=1722176812593',
+    additionalInfo: 'A story of transformation and keeping promises.',
   },
   {
-    name: "Cindrella",
-    username: "@Cindrella",
-    body:'Cinderella", or "The Little Glass Slipper", is a folk tale with thousands of variants that are told throughout the world.',
-    img: "https://ik.imagekit.io/SrinivasanRavi/Home/LittleInn/Home-Tales/Cinderella.jpeg",
+    name: 'Cinderella',
+    title: '"Cinderella", or "The Little Glass Slipper", is a folk tale with thousands of variants.',
+    image: 'https://ik.imagekit.io/SrinivasanRavi/Home/LittleInn/Home-Tales/Cinderella.jpeg',
+    additionalInfo: 'A timeless tale of kindness and unexpected fortunes.',
   },
   {
-    name: "Snow White",
-    username: "@Snow White",
-    body: '"Snow White" is a German fairy tale, first written down in the early 19th century. ',
-    img: "https://ik.imagekit.io/SrinivasanRavi/Home/LittleInn/Home-Tales/Snow%20White.webp",
+    name: 'Snow White',
+    title: '"Snow White" is a German fairy tale, first written down in the early 19th century.',
+    image: 'https://ik.imagekit.io/SrinivasanRavi/Home/LittleInn/Home-Tales/Snow%20White.webp',
+    additionalInfo: 'A tale of envy and innocence with a magical twist.',
   },
   {
-    name: "Beauty & Beast",
-    username: "@Beast",
-    body: "Originating in France, this is the story of Belle, a beautiful peasant girl ",
-    img: "https://ik.imagekit.io/SrinivasanRavi/Home/LittleInn/Home-Tales/Beauty%20and%20the%20Beast.jpg",
+    name: 'Jack and the Beanstalk',
+    title: 'Jack and the Beanstalk" is an English fairy tale.',
+    image: 'https://ik.imagekit.io/SrinivasanRavi/Home/LittleInn/Home-Tales/Jack%20and%20the%20Beanstalk.jpg',
+    additionalInfo: 'A daring adventure of bravery and cleverness.',
+  },
+  {
+    name: 'Hansel and Gretel',
+    title: 'A German fairy tale about two siblings who encounter a witch in the woods.',
+    image: 'https://ik.imagekit.io/SrinivasanRavi/Home/LittleInn/Home-Tales/Haensel_und_Gretel-2.jpg',
+    additionalInfo: 'A story of wit and survival against dark forces.',
+  },
+  {
+    name: 'The Three Little Pigs',
+    title: 'An English fairy tale about three pigs and a wolf who tries to blow their houses down.',
+    image: 'https://ik.imagekit.io/SrinivasanRavi/Home/LittleInn/Home-Tales/The-Three-Little-Pigs.webp',
+    additionalInfo: 'A lesson in hard work and perseverance.',
+  },
+  {
+    name: 'Rapunzel',
+    title: 'A German fairy tale about a young girl with long golden hair trapped in a tower.',
+    image: 'https://ik.imagekit.io/SrinivasanRavi/Home/LittleInn/Home-Tales/432072.jpg',
+    additionalInfo: 'A tale of rescue and love overcoming obstacles.',
+  },
+  {
+    name: 'The Little Mermaid',
+    title: 'A Danish fairy tale about a mermaid who dreams of becoming human.',
+    image: 'https://ik.imagekit.io/SrinivasanRavi/Home/LittleInn/Home-Tales/wp3151972.webp',
+    additionalInfo: 'A story of sacrifice and yearning for a different life.',
+  },
+  {
+    name: 'Sleeping Beauty',
+    title: 'A classic fairy tale about a princess who falls into a deep sleep.',
+    image: 'https://ik.imagekit.io/SrinivasanRavi/Home/LittleInn/Home-Tales/wp2795999.jpg',
+    additionalInfo: 'A tale of magic, curses, and true love’s kiss.',
+  },
+  {
+    name: 'Rumpelstiltskin',
+    title: 'A German fairy tale about a mysterious dwarf who helps a miller’s daughter spin straw into gold.',
+    image: 'https://ik.imagekit.io/SrinivasanRavi/Home/LittleInn/Home-Tales/e13e83b3d8f7861e51d2947d8f3bbb88.jpg',
+    additionalInfo: 'A story about cleverness and the power of names.',
   },
 ];
 
-const firstRow = reviews.slice(0, reviews.length / 2);
-const secondRow = reviews.slice(reviews.length / 2);
-
-const ReviewCard = ({ img, name, username, body }) => {
-  return (
-    <figure className="relative w-64 cursor-pointer overflow-hidden rounded-xl border p-4 border-gray-950/[.1] bg-gray-950/[.01] hover:bg-gray-950/[.05] dark:border-gray-50/[.1] dark:bg-gray-50/[.10] dark:hover:bg-gray-50/[.15]">
-      <div className="flex flex-row items-center gap-2">
-        <img className="rounded-full" width="32" height="32" alt="" src={img} />
-        <div className="flex flex-col">
-          <figcaption className="text-sm font-medium dark:text-white">
-            {name}
-          </figcaption>
-          <p className="text-xs font-medium dark:text-white/40">{username}</p>
-        </div>
-      </div>
-      <blockquote className="mt-2 text-sm">{body}</blockquote>
-    </figure>
-  );
-};
-
 const AdminStories = () => {
+  const [visibleStories, setVisibleStories] = useState(5);
+
+  const handleLoadMore = () => {
+    setVisibleStories(interviews.length);
+  };
+
   return (
     <>
-        <h1 className="flex items-center justify-center text-2xl y-20 font-bold">Stories</h1>
-        <br></br>
-    <div className="relative flex h-[500px] w-full flex-col items-center justify-center overflow-hidden rounded-lg border bg-background md:shadow-xl">
-      <Marquee pauseOnHover className="[--duration:20s]">
-        {firstRow.map((review) => (
-          <ReviewCard key={review.username} {...review} />
-        ))}
-      </Marquee>
-      <Marquee reverse pauseOnHover className="[--duration:20s]">
-        {secondRow.map((review) => (
-          <ReviewCard key={review.username} {...review} />
-        ))}
-      </Marquee>
-      <div className="pointer-events-none absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-white dark:from-background"></div>
-      <div className="pointer-events-none absolute inset-y-0 right-0 w-1/3 bg-gradient-to-l from-white dark:from-background"></div>
-    </div>
+      <section
+        id="client-section"
+        className="py-8 relative"
+        style={{ backgroundImage: "url('../image/background2.jpg')" }}
+      >
+        <hr />
+        <br />
+        <h1 className="text-5xl font-bold text-center mb-12">Stories</h1>
+        <div className="container mx-auto p-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {interviews.slice(0, visibleStories).map((interview, index) => (
+              <InterviewCard
+                key={index}
+                name={interview.name}
+                title={interview.title}
+                image={interview.image}
+                additionalInfo={interview.additionalInfo}
+              />
+            ))}
+          </div>
+          {visibleStories < interviews.length && (
+            <div className="flex justify-center mt-8">
+              <button
+                onClick={handleLoadMore}
+                className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+              >
+                Load more stories
+              </button>
+            </div>
+          )}
+        </div>
+      </section>
     </>
   );
 };

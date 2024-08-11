@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Checkbox } from "@/components/ui/checkbox"
+import { Checkbox } from "@/components/ui/checkbox";
 import {
   Card,
   CardContent,
@@ -19,85 +19,110 @@ import {
 } from '@/components/ui/tabs';
 import { useNavigate } from 'react-router-dom';
 import RetroGrid from '@/components/magicui/retro-grid';
+import axios from 'axios';
 
 const Register = () => {
   const navigate = useNavigate();
 
-  // User registration state
   const [userName, setUserName] = useState('');
-  const [userUsername, setUserUsername] = useState('');
+  const [userEmail, setUserEmail] = useState('');
   const [userPassword, setUserPassword] = useState('');
-  const [userConfirmPassword, setUserConfirmPassword] = useState('');
   const [userError, setUserError] = useState('');
 
-  // Admin registration state
   const [adminName, setAdminName] = useState('');
-  const [adminUsername, setAdminUsername] = useState('');
+  const [adminEmail, setAdminEmail] = useState('');
   const [adminPassword, setAdminPassword] = useState('');
-  const [adminConfirmPassword, setAdminConfirmPassword] = useState('');
   const [adminError, setAdminError] = useState('');
 
-  // State for success pop-up
   const [showSuccess, setShowSuccess] = useState(false);
 
-  // Helper functions for validation
-  const validateUserForm = () => {
-    if (!userName || !userUsername || !userPassword || !userConfirmPassword) {
-      return 'All fields are required.';
-    }
-    if (userPassword !== userConfirmPassword) {
-      return 'Passwords do not match.';
-    }
-    return '';
+  // Helper function to validate email format
+  const isValidEmail = (email) => {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regex.test(email);
   };
 
-  const validateAdminForm = () => {
-    if (!adminName || !adminUsername || !adminPassword || !adminConfirmPassword) {
-      return 'All fields are required.';
-    }
-    if (adminPassword !== adminConfirmPassword) {
-      return 'Passwords do not match.';
-    }
-    return '';
+  const isValidPassword = (password) => {
+    return password.length >= 6;
   };
 
-  const handleUserRegister = () => {
-    const error = validateUserForm();
-    if (error) {
-      setUserError(error);
+  const handleUserRegister = async () => {
+    if (!userName) {
+      setUserError('Name is required.');
       return;
     }
+    if (!isValidEmail(userEmail)) {
+      setUserError('Please enter a valid email.');
+      return;
+    }
+    if (!isValidPassword(userPassword)) {
+      setUserError('Password must be at least 6 characters.');
+      return;
+    }
+
     setUserError('');
-    setShowSuccess(true);
-    setTimeout(() => {
-      setShowSuccess(false);
-      navigate('/user/dashboard');
-    }, 2000);
+    try {
+      const response = await axios.post('http://localhost:7777/api/auth/register', {
+        name: userName,
+        email: userEmail,
+        password: userPassword,
+        role: 'USER'
+      });
+      console.log("User registered", response.data);
+      setShowSuccess(true);
+      setTimeout(() => {
+        setShowSuccess(false);
+        navigate('/user/dashboard');
+      }, 2000);
+    } catch (error) {
+      console.error("There was an error registering the user", error);
+      setUserError('Registration failed');
+    }
   };
 
-  const handleAdminRegister = () => {
-    const error = validateAdminForm();
-    if (error) {
-      setAdminError(error);
+  const handleAdminRegister = async () => {
+    if (!adminName) {
+      setAdminError('Name is required.');
       return;
     }
+    if (!isValidEmail(adminEmail)) {
+      setAdminError('Please enter a valid email.');
+      return;
+    }
+    if (!isValidPassword(adminPassword)) {
+      setAdminError('Password must be at least 6 characters.');
+      return;
+    }
+
     setAdminError('');
-    setShowSuccess(true);
-    setTimeout(() => {
-      setShowSuccess(false);
-      navigate('/admin/dashboard');
-    }, 2000);
+    try {
+      const response = await axios.post('http://localhost:7777/api/auth/register', {
+        name: adminName,
+        email: adminEmail,
+        password: adminPassword,
+        role: 'ADMIN'
+      });
+      console.log("Admin registered", response.data);
+      setShowSuccess(true);
+      setTimeout(() => {
+        setShowSuccess(false);
+        navigate('/admin/dashboard');
+      }, 2000);
+    } catch (error) {
+      console.error("There was an error registering the admin", error);
+      setAdminError('Registration failed');
+    }
   };
 
   return (
     <div className="h-full w-full flex justify-center items-center relative">
-      <Tabs defaultValue="account" className="w-[400px]">
+      <Tabs defaultValue="user" className="w-[400px]">
         <TabsList className="grid w-full grid-cols-2">
-          <TabsTrigger value="account">User</TabsTrigger>
-          <TabsTrigger value="password">Admin</TabsTrigger>
+          <TabsTrigger value="user">User</TabsTrigger>
+          <TabsTrigger value="admin">Admin</TabsTrigger>
         </TabsList>
 
-        <TabsContent value="account">
+        <TabsContent value="user">
           <Card>
             <CardHeader>
               <CardTitle>User Register</CardTitle>
@@ -117,12 +142,12 @@ const Register = () => {
                 />
               </div>
               <div className="space-y-1">
-                <Label htmlFor="user-username">Username</Label>
+                <Label htmlFor="user-email">Email</Label>
                 <Input
-                  id="user-username"
-                  value={userUsername}
-                  onChange={(e) => setUserUsername(e.target.value)}
-                  placeholder="Enter your username or email"
+                  id="user-email"
+                  value={userEmail}
+                  onChange={(e) => setUserEmail(e.target.value)}
+                  placeholder="Enter your email"
                   required
                 />
               </div>
@@ -137,24 +162,11 @@ const Register = () => {
                   required
                 />
               </div>
-              <div className="space-y-1">
-                <Label htmlFor="user-confirm-password">Confirm Password</Label>
-                <Input
-                  id="user-confirm-password"
-                  value={userConfirmPassword}
-                  onChange={(e) => setUserConfirmPassword(e.target.value)}
-                  placeholder="Confirm your password"
-                  type="password"
-                  required
-                />
-              </div>
               {userError && <p className="text-red-500 text-sm">{userError}</p>}
-              <div>
-      <div className="flex items-center space-x-2">
-        <Checkbox id="terms" />
-        <Label htmlFor="terms">Accept terms and conditions</Label>
-      </div>
-    </div>
+              <div className="flex items-center space-x-2">
+                <Checkbox id="terms-user" />
+                <Label htmlFor="terms-user">Accept terms and conditions</Label>
+              </div>
             </CardContent>
             <CardFooter>
               <Button onClick={handleUserRegister}>Register</Button>
@@ -162,7 +174,7 @@ const Register = () => {
           </Card>
         </TabsContent>
 
-        <TabsContent value="password">
+        <TabsContent value="admin">
           <Card>
             <CardHeader>
               <CardTitle>Admin Register</CardTitle>
@@ -182,12 +194,12 @@ const Register = () => {
                 />
               </div>
               <div className="space-y-1">
-                <Label htmlFor="admin-username">Username</Label>
+                <Label htmlFor="admin-email">Email</Label>
                 <Input
-                  id="admin-username"
-                  value={adminUsername}
-                  onChange={(e) => setAdminUsername(e.target.value)}
-                  placeholder="Enter your username or email"
+                  id="admin-email"
+                  value={adminEmail}
+                  onChange={(e) => setAdminEmail(e.target.value)}
+                  placeholder="Enter your email"
                   required
                 />
               </div>
@@ -202,24 +214,11 @@ const Register = () => {
                   required
                 />
               </div>
-              <div className="space-y-1">
-                <Label htmlFor="admin-confirm-password">Confirm Password</Label>
-                <Input
-                  id="admin-confirm-password"
-                  value={adminConfirmPassword}
-                  onChange={(e) => setAdminConfirmPassword(e.target.value)}
-                  placeholder="Confirm your password"
-                  type="password"
-                  required
-                />
-              </div>
               {adminError && <p className="text-red-500 text-sm">{adminError}</p>}
-              <div>
-      <div className="flex items-center space-x-2">
-        <Checkbox id="terms" />
-        <Label htmlFor="terms">Accept terms and conditions</Label>
-      </div>
-    </div>
+              <div className="flex items-center space-x-2">
+                <Checkbox id="terms-admin" />
+                <Label htmlFor="terms-admin">Accept terms and conditions</Label>
+              </div>
             </CardContent>
             <CardFooter>
               <Button onClick={handleAdminRegister}>Register</Button>
@@ -230,11 +229,11 @@ const Register = () => {
 
       {/* Success Pop-up */}
       {showSuccess && (
-        <div className="absolute top-0 left-1/2 transform -translate-x-1/2 font-semibold px-4 py-0 rounded shadow-lg mt-4">
+        <div className="absolute top-4 right-4 font-semibold px-4 py-2 bg-green-500 text-white rounded shadow-lg">
           Registration successful!
         </div>
       )}
-       <RetroGrid/>
+      <RetroGrid />
     </div>
   );
 };

@@ -15,6 +15,8 @@ import UserStories from './pages/User/UserStories'
 import AdminPodcasts from './pages/Admin/AdminPodcasts'
 import UserPodcasts from './pages/User/UserPodcasts'
 import UserSubscription from './pages/User/UserSubscription'
+import UserProfileSettings from './pages/User/UserProfileSettings'
+import UserFeedback from './pages/User/UserFeedback'
 
 
 
@@ -41,6 +43,8 @@ const App = () => {
                         <Route path='/user/podcasts' element={<UserPodcasts />} />
                         <Route path='/user/stories' element={<UserStories />} />
                         <Route path='/user/subscription' element={<UserSubscription />} />
+                        <Route path='/user/profile' element={<UserProfileSettings />} />
+                        <Route path='/user/feedback' element={<UserFeedback />} />
                     </Route>
 
                     <Route path='*' element={<NotFound />} />

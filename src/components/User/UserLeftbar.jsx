@@ -1,63 +1,90 @@
 import React from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { LayoutDashboard, Users, Power, BookOpenCheck, Podcast, SubscriptIcon } from 'lucide-react';
+import { LayoutDashboard, BookOpenCheck, Podcast, SubscriptIcon, FileEditIcon, SettingsIcon } from 'lucide-react';
+import { useTheme } from "@/components/theme-provider";
 
 const UserLeftbar = () => {
-const Move=useNavigate();
-const handleLogout=()=>{
-    Move('/');
-}
-const handleHome=()=>{
-    Move('/');
-}
+    const navigate = useNavigate();
+    const { theme } = useTheme(); // Use the theme context
+
+    const handleHome = () => {
+        navigate('/');
+    };
 
     const AdminLinks = [
         {
             title: 'Dashboard',
             link: '/user/dashboard',
-            icon: LayoutDashboard
+            icon: LayoutDashboard,
         },
         {
             title: 'Stories',
             link: '/user/stories',
-            icon: BookOpenCheck
+            icon: BookOpenCheck,
         },
         {
             title: 'Podcasts',
             link: '/user/podcasts',
-            icon: Podcast
+            icon: Podcast,
         },
         {
-            title: 'Subsrciption',
+            title: 'Subscription',
             link: '/user/subscription',
-            icon: SubscriptIcon
+            icon: SubscriptIcon,
+        },
+        {
+            title: 'Profile Settings',
+            link: '/user/profile',
+            icon: SettingsIcon,
+        },
+        {
+            title: 'Feedback',
+            link: '/user/feedback',
+            icon: FileEditIcon,
         },
     ];
 
+    const activeLinkStyle = theme === 'dark' ? 'bg-primary-500 text-white shadow-md' : 'bg-primary-200 text-gray-800 shadow-md';
+    const hoverLinkStyle = theme === 'dark' ? 'hover:bg-primary-700 hover:text-blue-300' : 'hover:bg-primary-100 hover:text-blue-600';
+    const lineColor = theme === 'dark' ? 'border-gray-700' : 'border-gray-300';
+
     return (
-        <div className='h-screen w-1/6 flex justify-center items-center flex-col shadow-sm shadow-primary pt-10'>
-             <div id="logo" className="flex items-center cursor-pointer" onClick={handleHome}>
-        <img
-          src="https://ik.imagekit.io/SrinivasanRavi/Home/LittleInn/FavIcon.png?updatedAt=1722142981113"
-          alt="Logo"
-          className="w-12 h-12 items-start py-0 top-0 z-0-0 justify-start"
-        />
-      </div>
-            <div className='h-full w-full flex flex-col justify-start items-center gap-2'>
-                {
-                    AdminLinks.map((data, index) => (
-                        <NavLink key={index} to={data.link} className='px-9 py-2 text-1xl font-bold text-center mb-8 mt-2 w-full'>
-                            <span className='flex flex-row items-center  justify-start h-full w-full gap-2'>
-                                {React.createElement(data.icon, { size: 20 })}
-                                {data.title}
-                            </span>
-                        </NavLink>
-                    ))
-                }
+        <div className="relative flex h-screen w-64 flex-col items-center bg-opacity-70 p-6 shadow-lg backdrop-blur-sm transition-all duration-300">
+            <div
+                id="logo"
+                className="flex w-full items-center justify-center space-x-3 py-5 cursor-pointer"
+                onClick={handleHome}
+            >
+                <img
+                    src="https://ik.imagekit.io/SrinivasanRavi/Home/LittleInn/2.png?updatedAt=1722589914943"
+                    alt="Logo"
+                    className="w-12 h-auto"
+                />
+                <h2 className="text-2xl font-bold tracking-wide">LittleInn</h2>
             </div>
-           
+            <hr className={`w-full ${lineColor} my-4`} />
+            <div className="flex flex-col items-start w-full space-y-4 flex-1">
+                {AdminLinks.map((data, index) => (
+                    <NavLink
+                        key={index}
+                        to={data.link}
+                        className={({ isActive }) =>
+                            `flex w-full items-center space-x-4 px-4 py-3 rounded-lg text-lg font-semibold transition-colors duration-200 ${
+                                isActive
+                                    ? activeLinkStyle
+                                    : hoverLinkStyle
+                            }`
+                        }
+                    >
+                        <data.icon size={24} className="flex-shrink-0" />
+                        <span>{data.title}</span>
+                    </NavLink>
+                ))}
+            </div>
+            <hr className={`absolute bottom-0 w-full ${lineColor} border-t-2`} />
+            <div className={`absolute right-0 top-0 h-full border-r-2 ${lineColor}`}></div>
         </div>
     );
-}
+};
 
 export default UserLeftbar;
