@@ -1,5 +1,4 @@
-import React from 'react'
-// const inputTextColor = theme === 'dark' ? 'text-white' : 'text-black';
+import React from 'react';
 
 const UserFeedback = () => {
   return (
@@ -57,9 +56,10 @@ const UserFeedback = () => {
               </label>
               <textarea
                 name="Message"
+                 placeholder="Connect with Us..."
                 id="message"
                 cols="30"
-                rows="10"
+                rows="4"
                 className="w-full p-2 border rounded {inputTextColor}"
               ></textarea>
             </div>

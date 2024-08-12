@@ -17,6 +17,7 @@ import UserPodcasts from './pages/User/UserPodcasts'
 import UserSubscription from './pages/User/UserSubscription'
 import UserProfileSettings from './pages/User/UserProfileSettings'
 import UserFeedback from './pages/User/UserFeedback'
+import AdminActivity from './pages/Admin/AdminActivity'
 
 
 
@@ -36,6 +37,7 @@ const App = () => {
                         <Route path='/admin/users' element={<AdminUser />} />
                         <Route path='/admin/stories' element={<AdminStories />} />
                         <Route path='/admin/podcasts' element={<AdminPodcasts />} />
+                        <Route path='/admin/activities' element={<AdminActivity />} />
                     </Route>
 
                     <Route element={<UserLayout />}>
