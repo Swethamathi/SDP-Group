@@ -1,4 +1,6 @@
 package com.littleinn.storytelling.model;
+
+
 import java.util.Collection;
 import java.util.List;
 
@@ -49,6 +51,7 @@ public class Users implements UserDetails {
 
     @Override
     public String getUsername() {
+        // NOTE : return username, if you are using username for login instead of email
         return email;
     }
 
