@@ -25,8 +25,8 @@ const Footer = () => (
       {/* Navigation Links */}
       <div className="flex space-x-8 text-sm">
         <a href="/" className="hover:text-gray-400">Home</a>
-        <a href="/#client-section" className="hover:text-gray-400">About Us</a>
-        <a href="/user/feedback" className="hover:text-gray-400">Connect With Us</a>
+        <a href="/#services-container" className="hover:text-gray-400">About Us</a>
+        <a href="/login" className="hover:text-gray-400">Connect With Us</a>
         <a href="/*" className="hover:text-gray-400">Our Team</a>
       </div>
 

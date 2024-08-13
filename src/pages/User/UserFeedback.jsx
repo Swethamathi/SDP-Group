@@ -1,27 +1,51 @@
-import React from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
 
 const UserFeedback = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    message: ''
+  });
+
+  const handleChange = (e) => {
+    const { id, value } = e.target;
+    setFormData((prev) => ({ ...prev, [id]: value }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post('http://localhost:7777/api/feedback/submit', formData);
+      console.log('Feedback submitted:', response.data);
+    } catch (error) {
+      console.error('Error submitting feedback:', error);
+    }
+  };
+
   return (
     <div>
-      <br></br>
-            <hr/>
-          <section
+      <br />
+      <hr />
+      <section
         id="contact"
         className="py-10 relative"
         style={{ backgroundImage: "url('../image/contact.jpg')" }}
-        >
+      >
         <h1 className="text-5xl font-bold text-center mb-12">Feedback</h1>
         <div id="contact-box" className="flex justify-center">
-          <form action="" className="w-2/5 space-y-4">
+          <form onSubmit={handleSubmit} className="w-2/5 space-y-4">
             <div className="form-group">
               <label htmlFor="name" className="text-lg font-medium">
                 Name:
               </label>
               <input
                 type="text"
-                name="myname"
                 id="name"
                 placeholder="Enter Your Name:"
+                value={formData.name}
+                onChange={handleChange}
                 className="w-full p-2 border rounded"
               />
             </div>
@@ -31,9 +55,10 @@ const UserFeedback = () => {
               </label>
               <input
                 type="email"
-                name="myemail"
                 id="email"
                 placeholder="Enter Your Email:"
+                value={formData.email}
+                onChange={handleChange}
                 className="w-full p-2 border rounded"
               />
             </div>
@@ -42,11 +67,12 @@ const UserFeedback = () => {
                 Phone Number:
               </label>
               <input
-                type="number"
-                name="number"
+                type="text"
                 id="phone"
                 placeholder="Enter Your Phone Number:"
                 maxLength="10"
+                value={formData.phone}
+                onChange={handleChange}
                 className="w-full p-2 border rounded"
               />
             </div>
@@ -55,101 +81,25 @@ const UserFeedback = () => {
                 Message:
               </label>
               <textarea
-                name="Message"
-                 placeholder="Connect with Us..."
                 id="message"
+                placeholder="Connect with Us..."
                 cols="30"
                 rows="4"
-                className="w-full p-2 border rounded {inputTextColor}"
+                value={formData.message}
+                onChange={handleChange}
+                className="w-full p-2 border rounded"
               ></textarea>
             </div>
             <input
               type="submit"
               className="w-full bg-black text-white py-2 rounded-lg cursor-pointer"
+              value="Submit"
             />
           </form>
         </div>
       </section>
     </div>
-  )
-}
-export default UserFeedback
+  );
+};
 
-// import React from 'react';
-
-// const UserFeedback = ({ theme }) => {
-//   // Define colors based on the theme
-//   const backgroundColor = theme === 'dark' ? 'bg-gray-800' : 'bg-white';
-
-//   return (
-//     <div>
-//       <hr />
-//       <section
-//         id="contact"
-//         className={`py-16 relative ${backgroundColor}`}
-//         style={{ backgroundImage: "url('../image/contact.jpg')" }}
-//       >
-//         <h1 className="text-5xl font-bold text-center mb-12">Feedback</h1>
-//         <div id="contact-box" className="flex justify-center">
-//           <form action="" className="w-2/5 space-y-4">
-//             <div className="form-group">
-//               <label htmlFor="name" className="text-lg font-medium">
-//                 Name:
-//               </label>
-//               <input
-//                 type="text"
-//                 name="myname"
-//                 id="name"
-//                 placeholder="Enter Your Name:"
-//                 className={`w-full p-2 border rounded ${inputTextColor}`}
-//               />
-//             </div>
-//             <div className="form-group">
-//               <label htmlFor="email" className="text-lg font-medium">
-//                 Email:
-//               </label>
-//               <input
-//                 type="email"
-//                 name="myemail"
-//                 id="email"
-//                 placeholder="Enter Your Email:"
-//                 className={`w-full p-2 border rounded ${inputTextColor}`}
-//               />
-//             </div>
-//             <div className="form-group">
-//               <label htmlFor="phone" className="text-lg font-medium">
-//                 Phone Number:
-//               </label>
-//               <input
-//                 type="number"
-//                 name="number"
-//                 id="phone"
-//                 placeholder="Enter Your Phone Number:"
-//                 maxLength="10"
-//                 className={`w-full p-2 border rounded ${inputTextColor}`}
-//               />
-//             </div>
-//             <div className="form-group">
-//               <label htmlFor="message" className="text-lg font-medium">
-//                 Message:
-//               </label>
-//               <textarea
-//                 name="Message"
-//                 id="message"
-//                 cols="30"
-//                 rows="10"
-//                 className={`w-full p-2 border rounded ${inputTextColor}`}
-//               ></textarea>
-//             </div>
-//             <input
-//               type="submit"
-//               className="w-full bg-black text-white py-2 rounded-lg cursor-pointer"
-//             />
-//           </form>
-//         </div>
-//       </section>
-//     </div>
-//   );
-// };
-
-// export default UserFeedback;
+export default UserFeedback;

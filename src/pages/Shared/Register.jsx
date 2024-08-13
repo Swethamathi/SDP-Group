@@ -72,7 +72,7 @@ const Register = () => {
       setShowSuccess(true);
       setTimeout(() => {
         setShowSuccess(false);
-        navigate('/user/dashboard');
+        navigate('/login');
       }, 2000);
     } catch (error) {
       console.error("There was an error registering the user", error);
@@ -106,7 +106,7 @@ const Register = () => {
       setShowSuccess(true);
       setTimeout(() => {
         setShowSuccess(false);
-        navigate('/admin/dashboard');
+        navigate('/login');
       }, 2000);
     } catch (error) {
       console.error("There was an error registering the admin", error);

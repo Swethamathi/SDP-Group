@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Sheet, SheetClose, SheetContent, SheetFooter, SheetHeader, SheetTitle } from '@/components/ui/sheet';
+import axios from "axios";
 
 const InterviewCard = ({ name, description, image, additionalInfo, onEdit, onDelete }) => (
   <div className="relative rounded-lg shadow-lg overflow-hidden group">
@@ -113,12 +114,18 @@ const AdminStories = () => {
     setVisibleStories(interviews.length);
   };
 
+
   const handleInputChange = (e) => {
     const { id, value } = e.target;
     setNewStory((prev) => ({ ...prev, [id]: value }));
   };
 
-  const handleAddStory = () => {
+  const handleAddStory = async() => {
+    const response = await axios.post("http://localhost:7777/stories/addstory",{
+      name:newStory.name,
+      description:newStory.description,
+      storyJournal:newStory.additionalInfo,
+    })
     if (editingStory) {
       setInterviews(
         interviews.map((story) =>
@@ -133,6 +140,7 @@ const AdminStories = () => {
     setOpen(false);
   };
 
+
   const handleEditStory = (story) => {
     setEditingStory(story);
     setNewStory(story);
@@ -142,6 +150,7 @@ const AdminStories = () => {
   const handleDeleteStory = (name) => {
     setInterviews(interviews.filter((story) => story.name !== name));
   };
+
 
   return (
     <>
@@ -238,3 +247,4 @@ const AdminStories = () => {
 };
 
 export default AdminStories;
+
